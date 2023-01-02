@@ -1,10 +1,18 @@
 const axios = require('axios');
 
-async function getPage(url) {
+async function twitterScrape(userInput) {
+
   try {
+
+    if (!userInput.match(new RegExp(/(twitter).(com)/,'ig'))) {
+      throw new Error('url_err');
+    }
+    const url = `https://twdown.app/api/twitter?url=${userInput}`
     const result = await axios.get(url);
 
-    result.data.data.totalMedia = result.data.data.videos.length
+    const media = result.data.data
+
+    media.totalMedia = media.videos.length
     console.log(result.data.data);
     // console.log(video);
   } catch (error) {
@@ -12,5 +20,4 @@ async function getPage(url) {
   }
 }
 
-
-getPage('https://twdown.app/api/twitter?url=https://twitter.com/TweetsOfCats/status/1547778899534172160');
+twitterScrape("https://twitter.com/TweetsOfCats/status/1547778899534172160")
