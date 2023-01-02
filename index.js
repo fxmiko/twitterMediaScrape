@@ -13,8 +13,8 @@ async function twitterScrape(userInput) {
     const media = result.data.data
 
     media.totalMedia = media.videos.length
-    console.log(result.data.data);
-    // console.log(video);
+    console.log(media);
+    
   } catch (error) {
     console.error(error);
   }
